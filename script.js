@@ -49,7 +49,7 @@ if (toggle && nav) {
             }
           });
         },
-        { threshold: 0.15, rootMargin: "0px 0px -40px 0px" }
+        { threshold: 0.08, rootMargin: "0px 0px -8% 0px" }
       );
       revealEls.forEach(function (el) { revealObserver.observe(el); });
     }

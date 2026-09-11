@@ -453,30 +453,37 @@ img { max-width: 100%; }
    fully visible in place. */
 .reveal {
   opacity: 0;
-  transform: translateY(18px);
-  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
-              transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
-  will-change: opacity, transform;
+  transform: translateY(28px);
+  filter: blur(2px);
+  transition: opacity 0.95s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.95s cubic-bezier(0.22, 1, 0.36, 1),
+              filter 0.95s ease;
+  will-change: opacity, transform, filter;
 }
 .reveal.in-view {
   opacity: 1;
   transform: translateY(0);
+  filter: none;
 }
 /* Stagger children inside a revealed group (timeline articles, split
    grids, hero-stats, skill rows) so they don't all pop at once */
-.reveal-group.in-view > * {
-  animation: reveal-rise 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+.reveal-group > * {
+  opacity: 0;
+  transform: translateY(22px);
 }
-.reveal-group.in-view > *:nth-child(1) { animation-delay: 0.02s; }
-.reveal-group.in-view > *:nth-child(2) { animation-delay: 0.08s; }
-.reveal-group.in-view > *:nth-child(3) { animation-delay: 0.14s; }
-.reveal-group.in-view > *:nth-child(4) { animation-delay: 0.2s; }
-.reveal-group.in-view > *:nth-child(5) { animation-delay: 0.26s; }
-.reveal-group.in-view > *:nth-child(6) { animation-delay: 0.32s; }
-.reveal-group.in-view > *:nth-child(n+7) { animation-delay: 0.36s; }
+.reveal-group.in-view > * {
+  animation: reveal-rise 0.85s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.reveal-group.in-view > *:nth-child(1) { animation-delay: 0.04s; }
+.reveal-group.in-view > *:nth-child(2) { animation-delay: 0.12s; }
+.reveal-group.in-view > *:nth-child(3) { animation-delay: 0.2s; }
+.reveal-group.in-view > *:nth-child(4) { animation-delay: 0.28s; }
+.reveal-group.in-view > *:nth-child(5) { animation-delay: 0.36s; }
+.reveal-group.in-view > *:nth-child(6) { animation-delay: 0.44s; }
+.reveal-group.in-view > *:nth-child(n+7) { animation-delay: 0.5s; }
 @keyframes reveal-rise {
-  from { opacity: 0; transform: translateY(14px); }
-  to   { opacity: 1; transform: translateY(0); }
+  from { opacity: 0; transform: translateY(22px); filter: blur(1.5px); }
+  to   { opacity: 1; transform: translateY(0); filter: none; }
 }
 
 /* 3. Hover lift on interactive surfaces */
@@ -572,6 +579,7 @@ img { max-width: 100%; }
   .reveal, .reveal-group > * {
     opacity: 1 !important;
     transform: none !important;
+    filter: none !important;
     animation: none !important;
     transition: none !important;
   }
