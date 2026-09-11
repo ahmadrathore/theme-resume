@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="MAR monogram">
+  <defs>
+    <linearGradient id="g" x1="12" y1="4" x2="52" y2="60" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0b5c63"/>
+      <stop offset="1" stop-color="#083f44"/>
+    </linearGradient>
+  </defs>
+  <path fill="url(#g)" d="M32 4c10 7 18 8 24 8v22c0 14-10 22-24 26C18 56 8 48 8 34V12c6 0 14-1 24-8z"/>
+  <path fill="none" stroke="#d7ecec" stroke-width="1.5" opacity=".55" d="M32 10c8 5.5 14.5 6.5 19.5 6.5V33c0 11-8 17.5-19.5 20.5C20.5 50.5 12.5 44 12.5 33V16.5C17.5 16.5 24 15.5 32 10z"/>
+  <text x="32" y="38" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="16" font-weight="700" fill="#f4fbfb" letter-spacing="1.2">MAR</text>
+</svg>
