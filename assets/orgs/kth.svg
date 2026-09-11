@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 56" role="img" aria-label="KTH">
+  <rect width="200" height="56" rx="8" fill="#1954A6"/>
+  <text x="100" y="24" text-anchor="middle" fill="#fff" font-family="Georgia, serif" font-size="16" font-weight="700">KTH</text>
+  <text x="100" y="40" text-anchor="middle" fill="#c7d7ef" font-family="Arial, sans-serif" font-size="8" letter-spacing="0.04em">ROYAL INSTITUTE OF TECHNOLOGY</text>
+</svg>
