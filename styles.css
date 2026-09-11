@@ -314,3 +314,261 @@ img { max-width: 100%; }
   .site-nav a { padding: 0.55rem 0; border-bottom: 1px solid var(--line); }
   .contact-list li { grid-template-columns: 1fr; gap: 0.2rem; }
 }
+
+/*
+  Token-matched version — uses the site's real custom properties
+  (--line, --muted, --ink, --teal, --panel, --display) instead of the
+  earlier placeholder rgba() values, so these blend with .skill-row,
+  .timeline article, and .cite-count rather than looking bolted on.
+*/
+
+.hero-stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  margin: 1.75rem 0 1.75rem;
+}
+
+.hero-stat {
+  padding: 0.85rem 1rem;
+  border-radius: 10px;
+  background: #fff;
+  border: 1px solid var(--line);
+}
+
+.hero-stat-value {
+  display: block;
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 1.5rem;
+  line-height: 1.15;
+  color: var(--teal);
+}
+
+.hero-stat-label {
+  display: block;
+  margin-top: 0.2rem;
+  font-size: 0.75rem;
+  color: var(--muted);
+  line-height: 1.35;
+}
+
+/* Mobile: 4-across gets cramped under ~480px, drop to a 2x2 grid */
+@media (max-width: 480px) {
+  .hero-stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/*
+  Compact publications list — quieter single-line-per-entry treatment
+  so publications don't compete with Experience / Leadership for
+  attention. Reuses .cite-count's teal serif-numeral styling for
+  visual continuity with the rest of the site.
+
+  Note: this does NOT remove the old .pubs / .cite-count rules —
+  they're simply unused once publications-compact.html replaces the
+  old markup. Safe to delete later if you want to tidy the file.
+*/
+
+.pubs-compact {
+  list-style: none;
+  margin: 1rem 0 0;
+  padding: 0;
+}
+
+.pubs-compact li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.6rem;
+  padding: 0.7rem 0;
+  border-top: 1px solid var(--line);
+  font-size: 0.92rem;
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+.pubs-compact li:first-child {
+  border-top: none;
+}
+
+.pub-cite {
+  flex-shrink: 0;
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 0.92rem;
+  color: var(--teal);
+}
+
+.pub-line {
+  color: var(--ink);
+}
+
+.pub-line em { color: var(--ink); font-style: italic; }
+
+
+/*
+  === DYNAMIC / MOTION LAYER ===
+  Purely additive. Nothing above this point is modified. Adds:
+  1. Slow ambient hero background shift (subtle, not a "blob" animation)
+  2. Scroll-reveal fade/slide-in for sections and cards (.reveal class,
+     toggled by IntersectionObserver in script.js)
+  3. Gentle hover lift on cards, buttons, skill pills, portrait
+  4. Animated underline on nav links + active-section highlight
+  5. Count-up-ready hero stat numbers (animation itself driven by JS,
+     this just adds a starting-state class)
+
+  Respects prefers-reduced-motion throughout — anyone with that OS
+  setting gets the instant, non-animated version automatically.
+*/
+
+/* 1. Ambient hero background — slow 20s drift between two soft states.
+   Uses the same colors already in body{}'s gradient, just animates the
+   radial gradient's position slightly so it feels alive without being
+   distracting. */
+@keyframes ambient-shift {
+  0%   { background-position: 10% -10%, 0% 0%; }
+  50%  { background-position: 18% -6%, 0% 0%; }
+  100% { background-position: 10% -10%, 0% 0%; }
+}
+.hero {
+  background:
+    radial-gradient(1200px 500px at 10% -10%, #d9ecec 0%, transparent 55%),
+    linear-gradient(180deg, transparent 0%, transparent 100%);
+  background-size: 140% 140%, 100% 100%;
+  animation: ambient-shift 22s ease-in-out infinite;
+}
+
+/* 2. Scroll reveal. JS adds .in-view to .reveal elements when they enter
+   the viewport. Default state is a slight fade + rise; final state is
+   fully visible in place. */
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+.reveal.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+/* Stagger children inside a revealed group (timeline articles, split
+   grids, hero-stats, skill rows) so they don't all pop at once */
+.reveal-group.in-view > * {
+  animation: reveal-rise 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.reveal-group.in-view > *:nth-child(1) { animation-delay: 0.02s; }
+.reveal-group.in-view > *:nth-child(2) { animation-delay: 0.08s; }
+.reveal-group.in-view > *:nth-child(3) { animation-delay: 0.14s; }
+.reveal-group.in-view > *:nth-child(4) { animation-delay: 0.2s; }
+.reveal-group.in-view > *:nth-child(5) { animation-delay: 0.26s; }
+.reveal-group.in-view > *:nth-child(6) { animation-delay: 0.32s; }
+.reveal-group.in-view > *:nth-child(n+7) { animation-delay: 0.36s; }
+@keyframes reveal-rise {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* 3. Hover lift on interactive surfaces */
+.btn {
+  transition: transform 0.22s cubic-bezier(0.22, 1, 0.36, 1),
+              box-shadow 0.22s ease, border-color 0.22s ease, background 0.22s ease;
+}
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(16, 24, 32, 0.1);
+}
+.btn.primary:hover {
+  box-shadow: 0 10px 24px rgba(11, 92, 99, 0.28);
+}
+.btn:active { transform: translateY(0); box-shadow: none; }
+
+.timeline article, .split article {
+  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.timeline article:hover, .split article:hover {
+  transform: translateX(4px);
+}
+
+.hero-stat {
+  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+              box-shadow 0.25s ease, border-color 0.25s ease;
+}
+.hero-stat:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px rgba(16, 24, 32, 0.1);
+  border-color: var(--teal);
+}
+
+.skill-row li {
+  transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+.skill-row li:hover {
+  background: var(--teal);
+  border-color: var(--teal);
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+.portrait {
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s ease;
+}
+.portrait:hover {
+  transform: translateY(-4px) rotate(-0.6deg);
+  box-shadow: 0 24px 48px rgba(16, 24, 32, 0.16);
+}
+
+.pubs-compact li {
+  transition: padding-left 0.2s ease, background 0.2s ease;
+  border-radius: 6px;
+}
+.pubs-compact li:hover {
+  padding-left: 0.5rem;
+  background: rgba(11, 92, 99, 0.05);
+}
+
+/* 4. Nav link underline + active-section state */
+.site-nav a {
+  position: relative;
+  padding-bottom: 3px;
+  transition: color 0.2s ease;
+}
+.site-nav a::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 100%; bottom: -2px;
+  height: 2px;
+  background: var(--teal);
+  transition: right 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.site-nav a:hover::after,
+.site-nav a.active::after {
+  right: 0;
+}
+.site-nav a.active { color: var(--teal); }
+
+/* 5. Hero stat number starting state for count-up (JS swaps the text
+   content on animation; this just avoids a flash of the final number
+   before JS runs) */
+.hero-stat-value[data-count-to] {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Respect reduced motion: disable all of the above animation/transition
+   behavior, but keep final visual states (reveal items stay visible,
+   hover states still work instantly) */
+@media (prefers-reduced-motion: reduce) {
+  .hero { animation: none; }
+  .reveal, .reveal-group > * {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+    transition: none !important;
+  }
+  .btn, .timeline article, .split article, .hero-stat,
+  .skill-row li, .portrait, .pubs-compact li, .site-nav a::after {
+    transition: none !important;
+  }
+}
