@@ -182,10 +182,18 @@ img { max-width: 100%; }
 .section p { color: var(--muted); }
 .section .narrow > p { font-size: 1.05rem; }
 
+.interests-label {
+  margin: 1.6rem 0 0.55rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
 .skill-row {
   list-style: none;
   display: flex; flex-wrap: wrap; gap: 0.55rem;
-  padding: 0; margin: 1.5rem 0 0;
+  padding: 0; margin: 0;
 }
 .skill-row li {
   padding: 0.4rem 0.7rem;
@@ -196,6 +204,23 @@ img { max-width: 100%; }
   font-size: 0.86rem;
   font-weight: 500;
 }
+.pubs li {
+  position: relative;
+  padding-right: 3.5rem;
+}
+.cite-count {
+  position: absolute;
+  right: 0;
+  top: 0;
+  min-width: 2.4rem;
+  text-align: right;
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--teal);
+  line-height: 1.3;
+}
+.section-note a { color: var(--teal); font-weight: 600; }
 
 .timeline { display: grid; gap: 1.6rem; }
 .timeline article, .split article {
