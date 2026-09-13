@@ -122,3 +122,37 @@ if (toggle && nav) {
     sections.forEach(function (s) { navObserver.observe(s.section); });
   }
 })();
+
+// === Resume dropdown ===
+(function () {
+  var toggle = document.querySelector(".resume-toggle");
+  var menu = document.querySelector(".resume-menu");
+  if (!toggle || !menu) return;
+
+  function closeMenu() {
+    menu.classList.remove("open");
+    toggle.setAttribute("aria-expanded", "false");
+  }
+  function openMenu() {
+    menu.classList.add("open");
+    toggle.setAttribute("aria-expanded", "true");
+  }
+
+  toggle.addEventListener("click", function (e) {
+    e.stopPropagation();
+    var isOpen = menu.classList.contains("open");
+    if (isOpen) { closeMenu(); } else { openMenu(); }
+  });
+
+  document.addEventListener("click", function (e) {
+    if (!menu.contains(e.target) && e.target !== toggle) closeMenu();
+  });
+
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") closeMenu();
+  });
+
+  menu.querySelectorAll("a").forEach(function (link) {
+    link.addEventListener("click", closeMenu);
+  });
+})();

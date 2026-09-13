@@ -21,8 +21,8 @@
       <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false">Menu</button>
 <nav class="site-nav" aria-label="Primary">
   <a href="#about">About</a>
-  <a href="#experience">Experience</a>
   <a href="#education">Education</a>
+  <a href="#experience">Experience</a>
   <a href="#leadership">Leadership</a>
   <a href="#highlights">Highlights</a>
   <a href="#teaching">Teaching</a>
@@ -69,6 +69,28 @@
 
       <div class="hero-actions">
         <a class="btn primary" href="mailto:ahmadrathore@gmail.com">Email</a>
+        <div class="resume-dropdown">
+          <button class="btn resume-toggle" type="button" aria-expanded="false" aria-controls="resume-menu">
+            Resume
+            <svg class="chev" width="10" height="6" viewBox="0 0 10 6" fill="none" aria-hidden="true">
+              <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <div class="resume-menu" id="resume-menu" role="menu">
+            <a role="menuitem" href="assets/cv/Rathore_CV_Academic.pdf" target="_blank" rel="noopener">
+              <span class="resume-menu-title">Academic</span>
+              <span class="resume-menu-sub">Research &amp; teaching focus</span>
+            </a>
+            <a role="menuitem" href="assets/cv/Rathore_CV_CyberLeadership.pdf" target="_blank" rel="noopener">
+              <span class="resume-menu-title">Cybersecurity Leadership</span>
+              <span class="resume-menu-sub">Program &amp; team leadership focus</span>
+            </a>
+            <a role="menuitem" href="assets/cv/Rathore_CV_Infrastructure.pdf" target="_blank" rel="noopener">
+              <span class="resume-menu-title">Infrastructure &amp; Cloud</span>
+              <span class="resume-menu-sub">Cloud, HPC &amp; systems focus</span>
+            </a>
+          </div>
+        </div>
         <a class="btn" href="https://www.linkedin.com/in/mahmadr" target="_blank" rel="noopener">LinkedIn</a>
         <a class="btn" href="https://scholar.google.com/citations?user=GoiH9mkAAAAJ&amp;hl=en" target="_blank" rel="noopener">Google Scholar</a>
         <a class="btn" href="https://github.com/ahmadrathore" target="_blank" rel="noopener">GitHub</a>
@@ -120,6 +142,50 @@
           <li>Systems monitoring</li>
           <li>Cybersecurity</li>
         </ul>
+      </div>
+    </section>
+
+    <section id="education" class="section">
+      <div class="wrap">
+        <h2 class="reveal">Education &amp; credentials</h2>
+        <div class="edu-list reveal-group">
+          <article>
+            <header class="exp-header">
+              <h3>Ph.D. Computer Science</h3>
+              <div class="exp-org-row">
+                <img class="org-logo" src="assets/orgs/official-gist.png" alt="GIST" width="44" height="44" />
+                <p class="meta"><span class="org-name">GIST, South Korea</span><span class="meta-sep">·</span>Mar 2017 – Aug 2021</p>
+              </div>
+            </header>
+            <p>Cloud-native edge systems, SDN, multi-view visibility forecasting (fully funded).</p>
+          </article>
+          <article>
+            <header class="exp-header">
+              <h3>M.Sc. Information &amp; Communication Systems Security</h3>
+              <div class="exp-org-row">
+                <img class="org-logo" src="assets/orgs/official-kth.png" alt="KTH" width="44" height="44" />
+                <p class="meta"><span class="org-name">KTH Royal Institute of Technology</span><span class="meta-sep">·</span>2008 – 2010</p>
+              </div>
+            </header>
+            <p>Network security and cryptography.</p>
+          </article>
+          <article>
+            <header class="exp-header">
+              <h3>B.S. Computer Science (Hons), Software Engineering</h3>
+              <div class="exp-org-row">
+                <img class="org-logo" src="assets/orgs/official-comsats.png" alt="COMSATS" width="44" height="44" />
+                <p class="meta"><span class="org-name">COMSATS Institute of Information Technology</span></p>
+              </div>
+            </header>
+            <p>Undergraduate foundation in software engineering.</p>
+          </article>
+          <article>
+            <header class="exp-header">
+              <h3>Certifications</h3>
+              <p class="meta">CEH (EC-Council) · CCNA · Workshop Series for New Managers</p>
+            </header>
+          </article>
+        </div>
       </div>
     </section>
 
@@ -235,50 +301,6 @@
               <li>Secure VoIP/mail systems for 1,000+ users; AD/DNS/DHCP/ISA; Barracuda NG, Cisco SSL VPN, Check Point.</li>
               <li>Risk/vulnerability assessment and secure Microsoft Exchange with endpoint protection.</li>
             </ul>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section id="education" class="section">
-      <div class="wrap">
-        <h2 class="reveal">Education &amp; credentials</h2>
-        <div class="edu-list reveal-group">
-          <article>
-            <header class="exp-header">
-              <h3>Ph.D. Computer Science</h3>
-              <div class="exp-org-row">
-                <img class="org-logo" src="assets/orgs/official-gist.png" alt="GIST" width="44" height="44" />
-                <p class="meta"><span class="org-name">GIST, South Korea</span><span class="meta-sep">·</span>Mar 2017 – Aug 2021</p>
-              </div>
-            </header>
-            <p>Cloud-native edge systems, SDN, multi-view visibility forecasting (fully funded).</p>
-          </article>
-          <article>
-            <header class="exp-header">
-              <h3>M.Sc. Information &amp; Communication Systems Security</h3>
-              <div class="exp-org-row">
-                <img class="org-logo" src="assets/orgs/official-kth.png" alt="KTH" width="44" height="44" />
-                <p class="meta"><span class="org-name">KTH Royal Institute of Technology</span><span class="meta-sep">·</span>2008 – 2010</p>
-              </div>
-            </header>
-            <p>Network security and cryptography.</p>
-          </article>
-          <article>
-            <header class="exp-header">
-              <h3>B.S. Computer Science (Hons), Software Engineering</h3>
-              <div class="exp-org-row">
-                <img class="org-logo" src="assets/orgs/official-comsats.png" alt="COMSATS" width="44" height="44" />
-                <p class="meta"><span class="org-name">COMSATS Institute of Information Technology</span></p>
-              </div>
-            </header>
-            <p>Undergraduate foundation in software engineering.</p>
-          </article>
-          <article>
-            <header class="exp-header">
-              <h3>Certifications</h3>
-              <p class="meta">CEH (EC-Council) · CCNA · Workshop Series for New Managers</p>
-            </header>
           </article>
         </div>
       </div>
